@@ -26,6 +26,28 @@ public class linked_list {
         n0.next = n1;
     }
 
+    /* 删除链表的节点 n0 之后的某个节点 */
+    static void remove(ListNode n0, int idx) {
+        if (n0.next == null || idx < 0)
+            return;
+        if (idx == 0) {
+            n0 = n0.next;
+            return;
+        }
+        ListNode head = n0;
+        for (int i = 0; i < idx; i++) {
+            if (head.next == null) {
+                return;
+            }
+            if (i + 1 == idx) {
+                ListNode P = head.next;
+                head.next = P.next;
+                return;
+            }
+            head = head.next;
+        }
+    }
+
     /* 访问链表中索引为 index 的节点 */
     static ListNode access(ListNode head, int index) {
         for (int i = 0; i < index; i++) {
@@ -73,6 +95,11 @@ public class linked_list {
         /* 删除节点 */
         remove(n0);
         System.out.println("删除节点后的链表为");
+        PrintUtil.printLinkedList(n0);
+
+        /* 删除指定节点 */
+        remove(n0, 4);
+        System.out.println("删除指定索引 4 处的节点后的链表为");
         PrintUtil.printLinkedList(n0);
 
         /* 访问节点 */
